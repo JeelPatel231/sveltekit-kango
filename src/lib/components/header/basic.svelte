@@ -1,5 +1,12 @@
-<script>
+<script lang="ts">
 	import Logo from '$lib/components/logo.svelte';
+
+	const linkMap : {[key:string] : string } = {
+		'Docs' : 'docs',
+		'Samples' : 'samples',
+		'Users' : 'users',
+		'GitHub' : 'https://github.com/AvinashReddy3108/literate-fortnight'
+	}
 </script>
 
 <header class="py-6 font-semibold text-neutral-900 dark:text-neutral print:hidden sm:py-10">
@@ -9,21 +16,16 @@
 			<Logo />
 		</div>
 		<!-- Header Links -->
-		<ul class="flex list-none flex-col ltr:text-right rtl:text-left sm:flex-row">
-			<li class="mb-1 sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-				<a
-					class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-					href="https://google.com"
-					title="Google">Google</a
-				>
-			</li>
-			<li class="mb-1 sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-				<a
-					class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
-					href="https://google.com"
-					title="Google">Google</a
-				>
-			</li>
+		<ul class="flex list-none sm:gap-8 flex-col ltr:text-right rtl:text-left sm:flex-row">
+			{#each Object.entries(linkMap) as [label, link]}
+				<li class="mb-1 sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+					<a
+						class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+						href={link}
+						title={label}>{label}</a
+					>
+				</li>
+			{/each}
 			<!-- Search button -->
 			<li class="ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
 				<button
